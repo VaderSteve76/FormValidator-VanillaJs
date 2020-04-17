@@ -13,6 +13,18 @@ function showError(input, message) {
   small.innerText = message;
 };
 
+// Show success outline
+function showSuccess(input) {
+  const formControl = input.parentElement;
+  formControl.className = 'form-control success';
+};
+
+// Check email is valid
+function isValidEmail(email) {
+  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+
 
 // EventListeners
 form.addEventListener('submit', function(e) {
@@ -23,4 +35,25 @@ form.addEventListener('submit', function(e) {
   } else {
     showSuccess(username);
   }
+
+  if(email.value === '') {
+    showError(email, 'Email is required');
+  } else if(!isValidEmail(email.value)) {
+    showError(email, 'Not a valid email');
+  } else {
+    showSuccess(email);
+  }
+
+  if(password.value === '') {
+    showError(password, 'Password is required');
+  } else {
+    showSuccess(password);
+  }
+
+  if(password2.value === '') {
+    showError(password2, 'Confirm password');
+  } else {
+    showSuccess(password2, 'Confirm password');
+  }
+
 });
