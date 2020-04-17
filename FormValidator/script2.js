@@ -51,9 +51,9 @@ form.addEventListener('submit', function(e) {
   }
 
   if(password2.value === '') {
-    showError(password2, 'Confirm password');
+    showError(password2, 'Please confirm password');
   } else {
-    showSuccess(password2, 'Confirm password');
+    showSuccess(password2);
   }
 
 });
